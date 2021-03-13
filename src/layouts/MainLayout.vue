@@ -92,18 +92,18 @@ const linksData = [
     icon: 'favorite',
     link: 'https://awesome.quasar.dev'
   }
-]
+];
 
-import { defineComponent, ref } from '@vue/composition-api'
+import { defineComponent, ref } from '@vue/composition-api';
 
 export default defineComponent({
   name: 'MainLayout',
   components: { EssentialLink },
-  setup () {
-    const leftDrawerOpen = ref(false)
-    const essentialLinks = ref(linksData)
+  setup() {
+    const leftDrawerOpen = ref(false);
+    const essentialLinks = ref(linksData);
 
-    return { leftDrawerOpen, essentialLinks }
+    return {leftDrawerOpen, essentialLinks}
   }
-})
+});
 </script>
