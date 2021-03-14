@@ -34,7 +34,7 @@ function useDisplayTodo(todos: Ref<Todo[]>) {
 }
 
 export default defineComponent({
-  name: 'CompositionComponent',
+  name: 'SchedulerComponent',
   props: {
     title: {
       type: String,
