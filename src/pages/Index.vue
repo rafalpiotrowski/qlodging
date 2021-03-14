@@ -1,17 +1,14 @@
 <template>
-  <q-page class="row items-center justify-evenly">
-    <scheduler-component
-      active
-    ></scheduler-component>
+  <q-page class="flex flex-center">
+    <img
+      alt="Quasar logo"
+      src="~assets/quasar-logo-full.svg"
+    >
   </q-page>
 </template>
 
-<script lang="ts">
-import SchedulerComponent from 'components/SchedulerComponent.vue';
-import { defineComponent} from '@vue/composition-api';
-
-export default defineComponent({
-  name: 'PageIndex',
-  components: { SchedulerComponent }
-});
+<script>
+export default {
+  name: 'PageIndex'
+}
 </script>

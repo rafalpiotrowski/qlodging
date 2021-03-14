@@ -1,12 +1,11 @@
-import { RouteConfig } from 'vue-router';
 
-const routes: RouteConfig[] = [
+const routes = [
   {
     path: '/',
     component: () => import('layouts/MainLayout.vue'),
     children: [
       { path: '', component: () => import('pages/Index.vue') },
-      { path: 'booking', component: () => import('pages/Booking.vue') }
+      { path: 'scheduler', component: () => import('pages/Scheduler.vue') }
     ]
   },
 
@@ -16,6 +15,6 @@ const routes: RouteConfig[] = [
     path: '*',
     component: () => import('pages/Error404.vue')
   }
-];
+]
 
-export default routes;
+export default routes

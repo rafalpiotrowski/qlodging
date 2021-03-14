@@ -1,6 +1,6 @@
 # QLodging (qlodging)
 
-Appartment Booking Application
+Apartment Booking
 
 ## Install the dependencies
 ```bash
