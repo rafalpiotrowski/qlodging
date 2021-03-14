@@ -1,8 +1,8 @@
 export default {
-  calendarView: 'month-scheduler',
+  calendarView: 'custom-scheduler',
   selectedDate: '2021-03-14',
   locale: 'en-us',
-  maxDays: 1,
+  maxDays: 100,
   bordered: false,
   fiveDayWorkWeek: false,
   firstDayMonday: false,

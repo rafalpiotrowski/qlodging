@@ -1,6 +1,7 @@
 <template>
   <q-page class="column" style="overflow: hidden">
     <!-- the calendar -->
+    <q-responsive :ratio="16/9">
     <div
       class="calendar-container"
       :style="containerStyle"
@@ -8,7 +9,6 @@
       <q-calendar
         ref="calendar"
         class="calendar"
-        style="height: calc(100vh - 50px)"
         :key="keyValue"
         v-touch-swipe.mouse.left.right="handleSwipe"
         v-model="selectedDate"
@@ -35,6 +35,7 @@
         :interval-height="intervalHeight"
         :resource-height="resourceHeight"
         :resource-width="resourceWidth"
+        :cell-width="cellWidth + 'px'"
         :day-height="dayHeight"
         :show-month-label="showMonthLabel"
         :show-work-weeks="showWorkWeeks"
@@ -51,15 +52,15 @@
         @click:resource2="resourceClicked"
         @click:resource:day2="resourceDayClicked"
       >
-
-        <template #intervals-header="days">
-          <div class="fit flex justify-center items-end">
-            <span class="q-calendar-daily__interval-text">{{ showOffset(days) }}</span>
-          </div>
-        </template>
+        <template #head-day="{ timestamp }">
+        <div class="full-height row justify-center items-center">
+          {{ getHeadDay(timestamp) }}
+        </div>
+      </template>
 
       </q-calendar>
     </div>
+    </q-responsive>
   </q-page>
 </template>
 
@@ -97,6 +98,7 @@ export default {
 
   data () {
     return {
+      cellWidth: 100,
       keyValue: 0,
       direction: 'next',
       weekdays: [0, 1, 2, 3, 4, 5, 6],
@@ -416,6 +418,9 @@ export default {
     }
   },
   methods: {
+    getHeadDay (timestamp) {
+      return `${timestamp.date}`
+    },
     calendarNext () {
       this.$refs.calendar.next()
     },
