@@ -1,4 +1,1 @@
-[build.environment]
-  NODE_ENV = "production"
-  CONTEXT = "production"
-  
+
