@@ -17,7 +17,7 @@ if (process.env.CONTEXT === 'production') {
   console.log('env: not supported!')
 }
 
-console.log('FIREBASE_API_KE: ' + process.env.FIREBASE_API_KEY)
+console.log('FIREBASE_API_KEY: ' + process.env.FIREBASE_API_KEY)
 console.log('Firebase_authDomain: ' + process.env.Firebase_authDomain)
 console.log('Firebase_projectId: ' + process.env.Firebase_projectId)
 console.log('Firebase_storageBucket: ' + process.env.Firebase_storageBucket)

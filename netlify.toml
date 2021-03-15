@@ -1,7 +1,14 @@
 [context.production]
   NODE_ENV = "production"
+  [context.production.environment]
+    FIREBASE_API_KEY=firebase key
+    Firebase_authDomain=auth domain
+    Firebase_projectId=project id
+    Firebase_storageBucket=storage bucket
+    Firebase_messagingSenderId=sender id
+    Firebase_appId=app id
 [context.deploy-preview]
   NODE_ENV = "production"
 [context.branch-deploy] 
   NODE_ENV = "production"
-  
+
