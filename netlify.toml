@@ -1,10 +1,4 @@
-[context.production]
-  environment = {
-    FIREBASE_API_KEY="firebase key",
-    Firebase_authDomain="auth domain",
-    Firebase_projectId="project id",
-    Firebase_storageBucket="storage bucket",
-    Firebase_messagingSenderId="sender id",
-    Firebase_appId="app id"
-  } 
-
+[build.environment]
+  NODE_ENV = "production"
+  CONTEXT = "production"
+  
