@@ -1,0 +1,7 @@
+[context.production]
+  NODE_ENV = "production"
+[context.deploy-preview]
+  NODE_ENV = "production"
+[context.branch-deploy] 
+  NODE_ENV = "production"
+  

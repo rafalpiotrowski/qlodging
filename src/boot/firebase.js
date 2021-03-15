@@ -8,6 +8,22 @@ import 'firebase/database'
 import * as firebaseui from 'firebaseui'
 import 'firebaseui/dist/firebaseui.css'
 
+console.log('env: ' + process.env.CONTEXT)
+if (process.env.CONTEXT === 'production') {
+  console.log('env: PROD')
+} else if (process.env.CONTEXT === 'development') {
+  console.log('env: DEV')
+} else {
+  console.log('env: not supported!')
+}
+
+console.log('FIREBASE_API_KE: ' + process.env.FIREBASE_API_KEY)
+console.log('Firebase_authDomain: ' + process.env.Firebase_authDomain)
+console.log('Firebase_projectId: ' + process.env.Firebase_projectId)
+console.log('Firebase_storageBucket: ' + process.env.Firebase_storageBucket)
+console.log('Firebase_messagingSenderId: ' + process.env.Firebase_messagingSenderId)
+console.log('Firebase_appId: ' + process.env.Firebase_appId)
+
 // Your web app's Firebase configuration
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
 var firebaseConfig = {
@@ -20,14 +36,6 @@ var firebaseConfig = {
 }
 
 // Initialize Firebase
-
-console.log('env: ' + process.env.FIREBASE_API_KEY)
-console.log('env: ' + process.env.Firebase_authDomain)
-console.log('env: ' + process.env.Firebase_projectId)
-console.log('env: ' + process.env.Firebase_storageBucket)
-console.log('env: ' + process.env.Firebase_messagingSenderId)
-console.log('env: ' + process.env.Firebase_appId)
-
 const firebaseApp = firebase.initializeApp(firebaseConfig)
 const firebaseAuth = firebaseApp.auth()
 const firebaseA = firebase.auth
