@@ -9,7 +9,6 @@ import * as firebaseui from 'firebaseui'
 import 'firebaseui/dist/firebaseui.css'
 
 console.log('node env: ' + process.env.NODE_ENV)
-console.log('context: ' + process.env.CONTEXT)
 if (process.env.NODE_ENV === 'production') {
   console.log('env: PROD')
 } else if (process.env.NODE_ENV === 'development') {

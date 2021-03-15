@@ -8,4 +8,4 @@
 # deploy contexts will inherit these settings.
 [context.production]
   command = "quasar build"
-  environment = { FIREBASE_API_KEY = "firebaseapikey" }
+  FIREBASE_API_KEY = "firebaseapikey" 
