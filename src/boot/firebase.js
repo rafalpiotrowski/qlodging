@@ -11,7 +11,7 @@ import 'firebaseui/dist/firebaseui.css'
 // Your web app's Firebase configuration
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
 var firebaseConfig = {
-  apiKey: process.env.Firebase_apiKey,
+  apiKey: process.env.FIREBASE_API_KEY,
   authDomain: process.env.Firebase_authDomain,
   projectId: process.env.Firebase_projectId,
   storageBucket: process.env.Firebase_storageBucket,
@@ -21,7 +21,7 @@ var firebaseConfig = {
 
 // Initialize Firebase
 
-console.log('env: ' + process.env.Firebase_apiKey)
+console.log('env: ' + process.env.FIREBASE_API_KEY)
 console.log('env: ' + process.env.Firebase_authDomain)
 console.log('env: ' + process.env.Firebase_projectId)
 console.log('env: ' + process.env.Firebase_storageBucket)
