@@ -20,6 +20,14 @@ var firebaseConfig = {
 }
 
 // Initialize Firebase
+
+console.log('env: ' + process.env.Firebase_apiKey)
+console.log('env: ' + process.env.Firebase_authDomain)
+console.log('env: ' + process.env.Firebase_projectId)
+console.log('env: ' + process.env.Firebase_storageBucket)
+console.log('env: ' + process.env.Firebase_messagingSenderId)
+console.log('env: ' + process.env.Firebase_appId)
+
 const firebaseApp = firebase.initializeApp(firebaseConfig)
 const firebaseAuth = firebaseApp.auth()
 const firebaseA = firebase.auth
