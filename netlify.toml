@@ -1,4 +1,10 @@
 # Settings in the [build] context are global and are applied to all contexts
 # unless otherwise overridden by more specific contexts.
 [build.environment]
-  FIREBASE_API_KEY = "firebaseapikey" 
+  FIREBASE_API_KEY = "firebaseapikey1" 
+
+[context.environment]
+  FIREBASE_API_KEY = "firebaseapikey2" 
+
+[production.environment]
+  FIREBASE_API_KEY = "firebaseapikey3" 
