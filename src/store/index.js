@@ -1,6 +1,8 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 
+import settings from './store-settings'
+import auth from './store-auth'
 import scheduler from './scheduler'
 import common from './common'
 
@@ -18,6 +20,8 @@ Vue.use(Vuex)
 export default function (/* { ssrContext } */) {
   const Store = new Vuex.Store({
     modules: {
+      settings,
+      auth,
       scheduler,
       common
     },
