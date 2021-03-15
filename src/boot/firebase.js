@@ -11,12 +11,12 @@ import 'firebaseui/dist/firebaseui.css'
 // Your web app's Firebase configuration
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
 var firebaseConfig = {
-  apiKey: 'AIzaSyD_qslCefQwIlMtM1Lza-5cd6DgNA5W6I0',
-  authDomain: 'qlodging-firebase.firebaseapp.com',
-  projectId: 'qlodging-firebase',
-  storageBucket: 'qlodging-firebase.appspot.com',
-  messagingSenderId: '809020416513',
-  appId: '1:809020416513:web:f79b951d5e19d85c8ad600'
+  apiKey: process.env.Firebase_apiKey,
+  authDomain: process.env.Firebase_authDomain,
+  projectId: process.env.Firebase_projectId,
+  storageBucket: process.env.Firebase_storageBucket,
+  messagingSenderId: process.env.Firebase_messagingSenderId,
+  appId: process.env.Firebase_appId
 }
 
 // Initialize Firebase
