@@ -17,13 +17,13 @@ if (process.env.NODE_ENV === 'production') {
   console.log('env: not supported!')
 }
 
-console.log('Firebase_apiKey: ' + process.env.Firebase_apiKey)
-console.log('Firebase_authDomain: ' + process.env.Firebase_authDomain)
-console.log('Firebase_projectId: ' + process.env.Firebase_projectId)
-console.log('Firebase_storageBucket: ' + process.env.Firebase_storageBucket)
-console.log('Firebase_messagingSenderId: ' + process.env.Firebase_messagingSenderId)
-console.log('Firebase_appId: ' + process.env.Firebase_appId)
-console.log('PIPPO_VAR: ' + process.env.PIPPO_VAR)
+console.log('Firebase_apiKey: >' + process.env.Firebase_apiKey + '<')
+console.log('Firebase_authDomain: >' + process.env.Firebase_authDomain + '<')
+console.log('Firebase_projectId: >' + process.env.Firebase_projectId + '<')
+console.log('Firebase_storageBucket: >' + process.env.Firebase_storageBucket + '<')
+console.log('Firebase_messagingSenderId: >' + process.env.Firebase_messagingSenderId + '<')
+console.log('Firebase_appId: >' + process.env.Firebase_appId + '<')
+console.log('PIPPO_VAR: >' + process.env.PIPPO_VAR + '<')
 
 // Your web app's Firebase configuration
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
