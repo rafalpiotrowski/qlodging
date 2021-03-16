@@ -3632,7 +3632,7 @@ dotenv-parse-variables@^2.0.0:
     debug "^4.3.1"
     is-string-and-not-blank "^0.0.2"
 
-dotenv@^8.2.0:
+dotenv@^8.1.0, dotenv@^8.2.0:
   version "8.2.0"
   resolved "https://registry.yarnpkg.com/dotenv/-/dotenv-8.2.0.tgz#97e619259ada750eea3e4ea3e26bceea5424b16a"
   integrity sha512-8sJ78ElpbDJBHNeBzUbUVLsqKdccaa/BXF1uPTw3GrvQTBgrQrtObr2mUrE38vzYd8cEv+m/JBfDLioYcfXoaw==
@@ -7634,6 +7634,13 @@ qs@6.7.0:
   version "6.7.0"
   resolved "https://registry.yarnpkg.com/qs/-/qs-6.7.0.tgz#41dc1a015e3d581f1621776be31afb2876a9b1bc"
   integrity sha512-VCdBRNFTX1fyE7Nb6FYoURo/SPe62QCaAyzJvUjwRaIsc+NePBEniHlvxFmmX56+HZphIGtV0XeCirBtpDrTyQ==
+
+quasar-app-extension-system-environment-variables@^2.0.2:
+  version "2.0.2"
+  resolved "https://registry.yarnpkg.com/quasar-app-extension-system-environment-variables/-/quasar-app-extension-system-environment-variables-2.0.2.tgz#6ddebc468f162ee4e6e131cd4632fb892d8828ee"
+  integrity sha512-FAgthwHkFdFmkPrCEekn0s4HGg6XZwUtljY+blZn43/ADLjDbeDYzOQiUon90JEMgC1mKQxRPH4SEj7qn18BgQ==
+  dependencies:
+    dotenv "^8.1.0"
 
 quasar@^1.0.0:
   version "1.15.5"

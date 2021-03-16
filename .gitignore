@@ -33,5 +33,5 @@ yarn-error.log*
 *.sln
 
 .vscode
-development.env
-production.env
+.env.development
+.env.production
