@@ -5,6 +5,7 @@ import settings from './store-settings'
 import auth from './store-auth'
 import scheduler from './scheduler'
 import common from './common'
+import tasks from './store-tasks'
 
 Vue.use(Vuex)
 
@@ -23,7 +24,8 @@ export default function (/* { ssrContext } */) {
       settings,
       auth,
       scheduler,
-      common
+      common,
+      tasks
     },
 
     // enable strict mode (adds overhead!)

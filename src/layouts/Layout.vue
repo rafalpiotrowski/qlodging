@@ -3,7 +3,7 @@
     <q-header elevated>
       <q-toolbar>
         <q-toolbar-title class="absolute-center">
-          Awesome Todo
+          QLodging
         </q-toolbar-title>
 
         <q-btn
@@ -15,14 +15,45 @@
           flat
         />
 
-        <q-btn
+        <q-btn-dropdown
           v-else
-          @click="logoutUser"
-          icon-right="account_circle"
-          label="Logout"
           class="absolute-right"
           flat
-        />
+        >
+          <template v-slot:label>
+          <div class="row items-center no-wrap">
+            <q-avatar left size="3em" >
+            <img :src="userPhotoUrl">
+          </q-avatar>
+          </div>
+        </template>
+           <div class="row no-wrap q-pa-md">
+        <div class="column">
+          <div class="text-h6 q-mb-md">Settings</div>
+          <q-toggle v-model="show12HourTimeFormat" label="show12HourTimeFormat" />
+          <q-toggle v-model="showTasksInOneList" label="showTasksInOneList" />
+        </div>
+
+        <q-separator vertical inset class="q-mx-lg" />
+
+        <div class="column items-center">
+          <q-avatar size="72px">
+            <img :src="userPhotoUrl">
+          </q-avatar>
+
+          <div class="text-subtitle1 q-mt-md q-mb-xs">{{userFullName}}</div>
+
+          <q-btn
+            color="primary"
+            label="Logout"
+            push
+            size="sm"
+            v-close-popup
+            @click="logoutUser"
+          />
+        </div>
+      </div>
+        </q-btn-dropdown>
       </q-toolbar>
     </q-header>
 
@@ -98,17 +129,27 @@
 
 <script>
 import { mapState, mapActions } from 'vuex'
+import { firebaseAuth } from 'boot/firebase'
 
 export default {
-  name: 'MainLayout',
+  name: 'Layout',
+  userFullName: '',
+  userPhotoUrl: '',
   data () {
     return {
       leftDrawerOpen: false,
+      userFullName: '',
+      userPhotoUrl: '',
       navs: [
         {
-          label: 'Todo',
+          label: 'Scheduler',
+          icon: 'far fa-calendar-alt',
+          to: '/scheduler'
+        },
+        {
+          label: 'Tasks',
           icon: 'list',
-          to: '/'
+          to: '/todo'
         },
         {
           label: 'Settings',
@@ -118,15 +159,24 @@ export default {
       ]
     }
   },
+  created () {
+    firebaseAuth.onAuthStateChanged(user => {
+      if (user) {
+        this.userFullName = user.displayName
+        this.userPhotoUrl = user.photoURL
+      }
+    })
+  },
   computed: {
-    ...mapState('auth', ['loggedIn'])
+    ...mapState('auth', ['loggedIn']),
+    ...mapState('settings', ['show12HourTimeFormat', 'showTasksInOneList'])
   },
   methods: {
     ...mapActions('auth', ['logoutUser']),
     quitApp () {
       this.$q.dialog({
         title: 'Confirm',
-        message: 'Really quit Awesome Todo?',
+        message: 'Really quit QLodger?',
         cancel: true,
         persistent: true
       }).onOk(() => {

@@ -1,50 +1,36 @@
-<template>
+<template lang="html">
   <q-page padding>
-    <q-card class="auth-tabs">
-      <q-tabs
-        v-model="tab"
-        dense
-        class="text-grey"
-        active-color="primary"
-        indicator-color="primary"
-        align="justify"
-        narrow-indicator
-      >
-        <q-tab name="login" label="Login" />
-        <q-tab name="register" label="Register" />
-      </q-tabs>
-
-      <q-separator />
-
-      <q-tab-panels v-model="tab" animated>
-        <q-tab-panel name="login">
-          <login-register :tab="tab" />
-        </q-tab-panel>
-
-        <q-tab-panel name="register">
-          <login-register :tab="tab" />
-        </q-tab-panel>
-      </q-tab-panels>
-    </q-card>
+    <div id="firebaseui-auth-container"></div>
   </q-page>
 </template>
 
 <script>
+import { firebaseAuth, firebaseA, firebaseUiAuth } from 'boot/firebase'
+
 export default {
-  data () {
-    return {
-      tab: 'login'
+  name: 'login',
+  mounted () {
+    var uiConfig = {
+      signInSuccessUrl: '/',
+      signInOptions: [
+        // firebaseA.FacebookAuthProvider.PROVIDER_ID,
+        firebaseA.EmailAuthProvider.PROVIDER_ID, // Other providers don't need to be given as object.
+        firebaseA.GoogleAuthProvider.PROVIDER_ID
+      ],
+      credentialHelper: firebaseUiAuth.CredentialHelper.NONE
     }
-  },
-  components: {
-    'login-register': require('components/Auth/LoginRegister.vue').default
+    let ui = firebaseUiAuth.AuthUI.getInstance()
+    if (!ui) {
+      ui = new firebaseUiAuth.AuthUI(firebaseAuth)
+    }
+    ui.start('#firebaseui-auth-container', uiConfig)
   }
 }
 </script>
 
 <style>
-  .auth-tabs {
-    max-width: 500px;
-    margin: 0 auto;
+  button.firebaseui-idp-button.mdl-button.mdl-js-button.mdl-button--raised.firebaseui-idp-phone.firebaseui-id-idp-button
+  {
+    background: rgb(78, 194, 76)!important;
   }
 </style>

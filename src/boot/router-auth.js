@@ -11,9 +11,9 @@ export default ({ router }) => {
       if (to.path == '/verifyEmail') {
         console.log('redirecting to email verification page')
         next()
-      } else if (to.path !== '/login') {
+      } else if (to.path !== '/auth/login') {
         console.log('redirecting to login page')
-        next('/login')
+        next('/auth/login')
       } else {
         next()
       }

@@ -1,16 +1,26 @@
 
 const routes = [
   {
+    path: '/auth',
+    component: () => import('layouts/Layout.vue'),
+    children: [
+      {
+        path: 'login',
+        component: () => import('pages/PageAuth.vue')
+      }
+    ]
+  },
+  {
     path: '/',
-    component: () => import('layouts/MainLayout.vue'),
+    component: () => import('layouts/Layout.vue'),
     children: [
       {
         path: '',
         component: () => import('pages/Index.vue')
       },
       {
-        path: '/scheduler',
-        component: () => import('pages/Scheduler.vue')
+        path: '/todo',
+        component: () => import('src/pages/PageTasks.vue')
       },
       {
         path: '/settings',
@@ -19,38 +29,25 @@ const routes = [
       {
         path: '/settings/help',
         component: () => import('pages/PageHelp.vue')
-      }]
+      },
+      {
+        path: '/verifyEmail',
+        component: () => import('pages/PageVerifyEmail')
+      }
+    ],
+    meta: {
+      requiresAuth: true
+    }
   },
   {
-    path: '/auth',
-    component: () => import('layouts/Layout.vue'),
+    path: '/scheduler',
+    component: () => import('src/layouts/SchedulerLayout.vue'),
     children: [
       {
         path: '',
-        component: () => import('pages/PageAuth.vue')
-      }]
-  },
-  {
-    path: '/login',
-    component: () => import('pages/auth/login')
-  },
-  {
-    path: '/success',
-    component: () => import('pages/auth/success'),
-    meta: {
-      requiresAuth: true
-    }
-  },
-  {
-    path: '/verifyEmail',
-    component: () => import('pages/auth/verifyEmail'),
-    meta: {
-      requiresAuth: true
-    }
-  },
-  {
-    path: '/completeAccount',
-    component: () => import('pages/auth/completeAccount'),
+        component: () => import('pages/Scheduler.vue')
+      }
+    ],
     meta: {
       requiresAuth: true
     }

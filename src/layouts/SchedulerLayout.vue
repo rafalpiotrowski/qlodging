@@ -27,6 +27,25 @@
         <q-space></q-space>
 
         <q-btn flat round @click="$q.dark.toggle()" :icon="$q.dark.isActive ? 'brightness_2' : 'brightness_5'" />
+
+        <q-space></q-space>
+        <q-btn
+          v-if="!loggedIn"
+          to="/auth"
+          icon-right="account_circle"
+          label="Login"
+          class="absolute-right"
+          flat
+        />
+
+        <q-btn
+          v-else
+          @click="logoutUser"
+          icon-right="account_circle"
+          label="Logout"
+          class="absolute-right"
+          flat
+        />
       </q-toolbar>
     </q-header>
 
@@ -48,12 +67,12 @@
       :width="350"
     >
       <div>
-        <q-toolbar class="bg-black text-white">
+        <q-toolbar >
           <q-avatar>
             <img src="https://cdn.quasar.dev/logo/svg/quasar-logo.svg">
           </q-avatar>
           <q-toolbar-title>
-            QLedger
+            QLodging
             <q-badge floating color="red">ver. {{ version }}</q-badge>
           </q-toolbar-title>
         </q-toolbar>
@@ -118,7 +137,7 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
+import { mapGetters, mapState, mapActions } from 'vuex'
 import EssentialLink from 'components/EssentialLink.vue'
 import { padTime } from '../util/time'
 import { getLocale } from '../util/getLocale'
@@ -169,7 +188,7 @@ const linksData = [
 ]
 
 export default {
-  name: 'MainLayout',
+  name: 'SchedulerLayout',
   components: { EssentialLink },
   data () {
     return {
@@ -185,6 +204,7 @@ export default {
     this.updateFormatters()
   },
   computed: {
+    ...mapState('auth', ['loggedIn']),
     ...mapGetters({
       bordered: 'scheduler/bordered',
       fiveDayWorkWeek: 'scheduler/fiveDayWorkWeek',
@@ -270,6 +290,7 @@ export default {
     }
   },
   methods: {
+    ...mapActions('auth', ['logoutUser']),
     onPrev () {
       /* eslint-disable-next-line */
       this.$root.$emit('calendar:prev')

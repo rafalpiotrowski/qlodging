@@ -2,11 +2,11 @@
 /* eslint-disable no-unused-vars */
 <template lang="html">
     <div id="verificationMail">
-        <h3>Validacion de Cuenta</h3>
-        <p>Hola <strong>{{name}}</strong>, necesitamos que valides tu cuenta</p>
-        <p>Te hemos enviado un correo a la casilla <strong>{{email}}</strong> con el asunto <strong>{{subjet}}</strong></p>
-        <p>Este mail contiene el link que te permitirá acceder al sistema.</p>
-        <p><button @click='resend'>Reenviar Mail</button></p>
+        <h3>You have sucessfully registered to QLodging</h3>
+        <p>Hello <strong>{{name}}</strong>, your email need to be verified!</p>
+        <p>Email has been send to the following email address: <strong>{{email}}</strong> titled <strong>{{subjet}}</strong></p>
+        <p>This email contains link that need to be pressed or pasted into browser.</p>
+        <p><button @click='resend'>If you did not receive email, press this button to resend it!</button></p>
     </div>
 </template>
 
@@ -22,6 +22,7 @@ export default {
       subjet: 'Validación de cuenta'
     }
   },
+
   created () {
     firebaseAuth.onAuthStateChanged(user => {
       if (user) {

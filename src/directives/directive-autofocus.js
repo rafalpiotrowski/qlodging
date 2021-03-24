@@ -1,9 +1,9 @@
 import { Platform } from 'quasar'
 
 export const autofocus = {
-  bind(el, binding) {
+  bind (el, binding) {
     console.log('binding: ', binding)
-    let input = el.querySelector('.q-field__native')
+    const input = el.querySelector('.q-field__native')
     let delay = 0
     if (Platform.is.cordova) {
       delay = 700
@@ -13,6 +13,6 @@ export const autofocus = {
     }
     setTimeout(() => {
       input.focus()
-    }, delay);
+    }, delay)
   }
 }
