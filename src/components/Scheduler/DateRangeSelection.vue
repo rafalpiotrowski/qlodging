@@ -1,30 +1,56 @@
 <template>
   <div>
-    <q-btn flat dense label="Today" class="q-mx-md" @click="setToday"></q-btn>
-    <q-btn flat dense round icon="keyboard_arrow_left" @click="onPrev"></q-btn>
-    <q-btn flat dense round icon="keyboard_arrow_right" @click="onNext"></q-btn>
-    <span
-      >Range: {{ selectedDate }} to {{ selectedDate2 }} (days: {{ nrOfDays }})</span
-    >
-    <div>
+    <div class="row items-center justify-start">
+      <q-btn @click="setToday" label="Back to Today" color="primary" flat />
+      <q-separator inset dark />
+      Scheduler range:
+      <q-select
+        v-model="nrOfDays"
+        :options="listOfRangeOptions"
+        emit-value
+        borderless
+        map-options
+        options-dense
+      ></q-select>
+    </div>
+
+    <div class="row">
       <q-date
         v-model="selectedDate"
+        no-unset
+        minimal
         :mask="calendarSettings.qDateMask"
-      ></q-date>
+      >
+      </q-date>
+       <q-separator inset/>
       <q-date
         v-model="selectedDate2"
+        no-unset
+        minimal
         :mask="calendarSettings.qDateMask"
-      ></q-date>
+      >
+      </q-date>
     </div>
   </div>
 </template>
 
 <script>
 import { mapGetters, mapActions } from 'vuex'
-import { padTime } from 'src/util/time'
 import { date } from 'quasar'
 
 export default {
+  data () {
+    return {
+      listOfRangeOptions: [
+        { label: 'Week', value: 7 },
+        { label: '2 Weeks', value: 14 },
+        { label: 'Month', value: 30 },
+        { label: '3 Months', value: 90 },
+        { label: '6 Months', value: 180 },
+        { label: 'Year', value: 360 }
+      ]
+    }
+  },
   computed: {
     ...mapGetters('settings', ['calendarSettings']),
     selectedDate: {
@@ -59,30 +85,16 @@ export default {
       'setCalendarDateRangeDays',
       'updateCalendarSettings'
     ]),
-    onPrev () {
-      this.$root.$emit('calendar:prev')
-    },
-    onNext () {
-      this.$root.$emit('calendar:next')
-    },
     setToday () {
-      this.$root.$emit('calendar:today', this.formatDate())
-    },
-    formatDate (date) {
-      const d = date !== undefined ? new Date(date) : new Date(),
-        month = '' + (d.getMonth() + 1),
-        day = '' + d.getDate(),
-        year = d.getFullYear()
-
-      return [year, padTime(month), padTime(day)].join('-')
+      // this.$root.$emit('calendar:today', this.formatDate())
+      const today = date.formatDate(Date.now(), 'YYYY-MM-DD')
+      this.selectedDate = today
     }
   },
   beforeMount () {
     const today = date.formatDate(Date.now(), 'YYYY-MM-DD')
-    this.updateCalendarSettings({ dateRangeStart: today, dateRangeDays: 7 })
+    this.updateCalendarSettings({ dateRangeStart: today, dateRangeDays: 14 })
   }
 }
 </script>
-<style>
-
-</style>
+<style></style>

@@ -28,22 +28,14 @@ const mutations = {
   setCalendarDateRangeStart (state, value) {
     state.calendarSettings.dateRangeStart = value
     const startDate = date.extractDate(value, qCalDateFormat)
-    let endDate = date.extractDate(state.calendarSettings.dateRangeEnd, qCalDateFormat)
-    const days = date.getDateDiff(endDate, startDate, 'days')
-    if (days < 0) {
-      // startdate is older then enddate so we change end date to add previous day range
-      endDate = date.addToDate(startDate, { days: state.calendarSettings.dateRangeDays })
-      state.calendarSettings.dateRangeEnd = date.formatDate(endDate, qCalDateFormat)
-    } else {
-      state.calendarSettings.dateRangeDays = days
-    }
+    const endDate = date.addToDate(startDate, { days: state.calendarSettings.dateRangeDays })
+    state.calendarSettings.dateRangeEnd = date.formatDate(endDate, qCalDateFormat)
   },
   setCalendarDateRangeEnd (state, value) {
     state.calendarSettings.dateRangeEnd = value
-    const startDate = date.extractDate(state.calendarSettings.dateRangeStart, qCalDateFormat)
     const endDate = date.extractDate(value, qCalDateFormat)
-    const days = date.getDateDiff(endDate, startDate, 'days')
-    state.calendarSettings.dateRangeDays = days
+    const startDate = date.addToDate(endDate, { days: state.calendarSettings.dateRangeDays * -1 })
+    state.calendarSettings.dateRangeStart = date.formatDate(startDate, qCalDateFormat)
   },
   setCalendarDateRangeDays (state, value) {
     state.calendarSettings.dateRangeDays = value
