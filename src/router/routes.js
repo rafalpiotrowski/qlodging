@@ -33,19 +33,10 @@ const routes = [
       {
         path: '/verifyEmail',
         component: () => import('pages/PageVerifyEmail')
-      }
-    ],
-    meta: {
-      requiresAuth: true
-    }
-  },
-  {
-    path: '/scheduler',
-    component: () => import('src/layouts/SchedulerLayout.vue'),
-    children: [
+      },
       {
-        path: '',
-        component: () => import('pages/Scheduler.vue')
+        path: '/scheduler',
+        component: () => import('pages/PageScheduler')
       }
     ],
     meta: {

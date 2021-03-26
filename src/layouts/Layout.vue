@@ -4,6 +4,7 @@
       <q-toolbar>
         <q-toolbar-title class="absolute-center">
           QLodging
+          <q-badge floating color="red">beta</q-badge>
         </q-toolbar-title>
 
         <q-btn

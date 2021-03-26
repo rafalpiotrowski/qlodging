@@ -109,13 +109,13 @@ export default {
     ...mapActions('settings', ['setShow12HourTimeFormat', 'setShowTasksInOneList']),
     visitOurWebsite () {
       if (this.$q.platform.is.android && this.$q.platform.is.cordova) {
-        cordova.InAppBrowser.open('http://www.google.com', '_blank', 'location=yes')
+        cordova.InAppBrowser.open('https://qlodging.netlify.app', '_blank', 'location=yes')
       } else {
-        openURL('http://www.google.com')
+        openURL('https://qlodging.netlify.app/')
       }
     },
     emailUs () {
-      window.location.href = 'mailto:hello@awesometodo.com?subject=Awesome Todo Feedback'
+      window.location.href = 'mailto:rafal.piotrowski@live.com?subject=QLodging Feedback'
     }
   }
 }

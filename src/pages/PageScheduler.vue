@@ -1,66 +1,73 @@
 <template>
   <q-page class="column" style="overflow: hidden">
-    <!-- the calendar -->
-    <q-responsive :ratio="16/9">
-    <div
-      class="calendar-container"
-      :style="containerStyle"
-    >
-      <q-calendar
-        ref="calendar"
-        class="calendar"
-        :key="keyValue"
-        v-touch-swipe.mouse.left.right="handleSwipe"
-        v-model="selectedDate"
-        :locale="locale"
-        :max-days="maxDays"
-        :bordered="bordered"
-        animated
-        transition-prev="slide-right"
-        transition-next="slide-left"
-        :drag-over-func="onDragOver"
-        :drop-func="onDrop"
-        :view="calendarView"
-        :weekdays="weekdays"
-        :interval-minutes="60 * intervalRangeStep"
-        :interval-start="intervalStart"
-        :interval-count="intervalCount"
-        :hour24-format="hour24Format"
-        :short-month-label="shortMonthLabel"
-        :show-day-of-year-label="showDayOfYearLabel"
-        :hide-header="hideHeader"
-        :no-scroll="noScroll"
-        :short-weekday-label="shortWeekdayLabel"
-        :short-interval-label="shortIntervalLabel"
-        :interval-height="intervalHeight"
-        :resource-height="resourceHeight"
-        :resource-width="resourceWidth"
-        :cell-width="cellWidth + 'px'"
-        :day-height="dayHeight"
-        :show-month-label="showMonthLabel"
-        :show-work-weeks="showWorkWeeks"
-        :no-default-header-btn="noDefaultHeaderBtn"
-        :no-default-header-text="noDefaultHeaderText"
-        :resources="resources"
-        @change="onChanged"
-        @moved="onMoved"
-        @click:date2="onDateChanged"
-        @click:interval2="addEventMenu"
-        @click:time2="addEventMenu"
-        @click:day2="addEventMenu"
-        @click:week2="addEventMenu"
-        @click:resource2="resourceClicked"
-        @click:resource:day2="resourceDayClicked"
-      >
-        <template #head-day="{ timestamp }">
-        <div class="full-height row justify-center items-center">
-          {{ getHeadDay(timestamp) }}
+    <div class="q-pa-md absolute full-width full-height column">
+      <template>
+        <div class="row q-mb-lg">
+          <data-range-selection />
         </div>
-      </template>
+        <!-- the calendar -->
+        <q-responsive :ratio="16/9">
+        <div
+          class="calendar-container"
+          :style="containerStyle"
+        >
+          <q-calendar
+            ref="calendar"
+            class="calendar"
+            :key="keyValue"
+            v-touch-swipe.mouse.left.right="handleSwipe"
+            v-model="selectedDate"
+            :locale="locale"
+            :max-days="maxDays"
+            :bordered="bordered"
+            animated
+            transition-prev="slide-right"
+            transition-next="slide-left"
+            :drag-over-func="onDragOver"
+            :drop-func="onDrop"
+            :view="calendarView"
+            :weekdays="weekdays"
+            :interval-minutes="60 * intervalRangeStep"
+            :interval-start="intervalStart"
+            :interval-count="intervalCount"
+            :hour24-format="hour24Format"
+            :short-month-label="shortMonthLabel"
+            :show-day-of-year-label="showDayOfYearLabel"
+            :hide-header="hideHeader"
+            :no-scroll="noScroll"
+            :short-weekday-label="shortWeekdayLabel"
+            :short-interval-label="shortIntervalLabel"
+            :interval-height="intervalHeight"
+            :resource-height="resourceHeight"
+            :resource-width="resourceWidth"
+            :cell-width="cellWidth + 'px'"
+            :day-height="dayHeight"
+            :show-month-label="showMonthLabel"
+            :show-work-weeks="showWorkWeeks"
+            :no-default-header-btn="noDefaultHeaderBtn"
+            :no-default-header-text="noDefaultHeaderText"
+            :resources="resources"
+            @change="onChanged"
+            @moved="onMoved"
+            @click:date2="onDateChanged"
+            @click:interval2="addEventMenu"
+            @click:time2="addEventMenu"
+            @click:day2="addEventMenu"
+            @click:week2="addEventMenu"
+            @click:resource2="resourceClicked"
+            @click:resource:day2="resourceDayClicked"
+          >
+            <template #head-day="{ timestamp }">
+            <div class="full-height row justify-center items-center">
+              {{ getHeadDay(timestamp) }}
+            </div>
+          </template>
 
-      </q-calendar>
+          </q-calendar>
+        </div>
+        </q-responsive>
+      </template>
     </div>
-    </q-responsive>
   </q-page>
 </template>
 
@@ -69,9 +76,9 @@
 
 <script>
 import { mapGetters } from 'vuex'
-import { isCssColor } from '../util/color'
-import events from '../util/events'
-import { padTime } from '../util/time'
+import { isCssColor } from 'src/util/color'
+import events from 'src/util/events'
+import { padTime } from 'src/util/time'
 import { date, colors, Platform } from 'quasar'
 import { stop, prevent, stopAndPrevent } from 'quasar/src/utils/event'
 // normally you would not import "all" of QCalendar, but is needed for this example to work with UMD (codepen)
@@ -280,7 +287,11 @@ export default {
     this.$root.$off('calendar:prev', this.calendarPrev)
     this.$root.$off('calendar:today', this.calendarToday)
   },
+  components: {
+    'data-range-selection': require('components/Scheduler/DateRangeSelection.vue').default
+  },
   computed: {
+    ...mapGetters('settings', ['calendarSettings']),
     ...mapGetters({
       locale: 'scheduler/locale',
       titlebarHeight: 'common/titlebarHeight',
@@ -314,10 +325,18 @@ export default {
     },
     selectedDate: {
       get () {
-        return this.$store.state.scheduler.selectedDate
+        return this.calendarSettings.dateRangeStart
       },
       set (date) {
         this.$store.commit('scheduler/selectedDate', date)
+      }
+    },
+    maxDays: {
+      get () {
+        return this.calendarSettings.dateRangeDays
+      },
+      set (date) {
+        this.$store.commit('scheduler/maxDays', date)
       }
     },
     calendarView: {

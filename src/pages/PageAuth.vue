@@ -1,6 +1,9 @@
-<template lang="html">
-  <q-page padding>
-    <div id="firebaseui-auth-container"></div>
+<template
+  lang="html">
+  <q-page
+    padding>
+    <div
+      id="firebaseui-auth-container"></div>
   </q-page>
 </template>
 

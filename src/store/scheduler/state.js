@@ -5,7 +5,7 @@ export default {
   maxDays: 100,
   bordered: false,
   fiveDayWorkWeek: false,
-  firstDayMonday: false,
+  firstDayMonday: true,
   shortMonthLabel: false,
   showDayOfYearLabel: false,
   shortWeekdayLabel: false,

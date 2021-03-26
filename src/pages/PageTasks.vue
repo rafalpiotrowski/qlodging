@@ -74,7 +74,6 @@ export default {
     this.$root.$on('showAddTask', () => {
       this.showAddTask = true
     })
-    console.log('mounted')
   },
   components: {
     'add-task': require('components/Tasks/Modals/AddTask.vue').default,
