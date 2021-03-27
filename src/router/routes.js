@@ -37,6 +37,10 @@ const routes = [
       {
         path: '/scheduler',
         component: () => import('pages/PageScheduler')
+      },
+      {
+        path: '/resources',
+        component: () => import('pages/PageResources')
       }
     ],
     meta: {

@@ -143,6 +143,11 @@ export default {
       userPhotoUrl: '',
       navs: [
         {
+          label: 'Resources',
+          icon: 'single_bed',
+          to: '/resources'
+        },
+        {
           label: 'Scheduler',
           icon: 'far fa-calendar-alt',
           to: '/scheduler'

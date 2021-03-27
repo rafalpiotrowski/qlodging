@@ -16,6 +16,7 @@
 <style></style>
 
 <script>
+
 export default {
   components: {
     'data-range-selection': require('components/Scheduler/DateRangeSelection.vue')
